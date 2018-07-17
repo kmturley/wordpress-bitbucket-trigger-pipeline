@@ -15,13 +15,15 @@ Activate the plugin via the wordpress interface at:
 
     http://localhost:8080/wp-admin/plugins.php
 
-Go to your BitBucket project and get credentials
+Go to your BitBucket project and generate an App Password using the guide:
+
+    https://blog.bitbucket.org/2016/06/06/app-passwords-bitbucket-cloud/
 
 Then go to your server environment configuration e.g:
 
     Elastic Beanstalk > Configuration > Software Configuration
 
-Set the environment variables using id and token from your BitBucket Pipelines credentials:
+Set the environment variables using your username and token from your BitBucket App Password:
 
     BITBUCKET_PROJECT: XX
     BITBUCKET_USERNAME: XX

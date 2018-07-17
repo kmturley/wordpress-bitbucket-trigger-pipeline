@@ -19,16 +19,24 @@ function publish_static_hook($id) {
   $bitbucket_password = getenv('BITBUCKET_PASSWORD');
   // if environment variables are set, then trigger static build
   if ($bitbucket_project && $bitbucket_username && $bitbucket_password) {
-    $data = new stdClass();
-    $data->target = new stdClass();
-    $data->target->ref_type = 'branch';
-    $data->target->type = 'pipeline_ref_target';
-    $data->target->ref_name = 'master';
-    wp_remote_post('https://api.bitbucket.org/2.0/repositories/'.$bitbucket_project.'/pipelines', array(
-      'body'    => $data,
-      'headers' => array('Authorization' => 'Basic '.base64_encode($bitbucket_username.':'.$bitbucket_password),),
+    $data = array(
+      'target' => array(
+        'ref_type' => 'branch',
+        'type' => 'pipeline_ref_target',
+        'ref_name' => 'production'
+      )
+    );
+    $response = wp_remote_post('https://api.bitbucket.org/2.0/repositories/'.$bitbucket_project.'/pipelines/', array(
+      'body' => json_encode($data),
+      'headers' => array(
+        'Authorization' => 'Basic '.base64_encode($bitbucket_username.':'.$bitbucket_password),
+        'Content-Type' => 'application/json'
+      ),
     ));
+    // for debugging
+    // echo '<pre>https://api.bitbucket.org/2.0/repositories/'.$bitbucket_project.'/pipelines</pre>';
+    // echo '<pre>'.print_r($data, true).'</pre>';
+    // echo '<pre>'.print_r($response, true).'</pre>';
   }
 }
-
 ?>
