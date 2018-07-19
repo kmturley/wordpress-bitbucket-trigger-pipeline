@@ -23,11 +23,12 @@ Then go to your server environment configuration e.g:
 
     Elastic Beanstalk > Configuration > Software Configuration
 
-Set the environment variables using your username and token from your BitBucket App Password:
+Set the BitBucket variables in the 'Settings' > 'General' section on WordPress, using your BitBucket project, branch, username and app password:
 
-    BITBUCKET_PROJECT: XX
-    BITBUCKET_USERNAME: XX
-    BITBUCKET_PASSWORD: XX
+    BITBUCKET PROJECT: XX
+    BITBUCKET BRANCH: XX
+    BITBUCKET USERNAME: XX
+    BITBUCKET APP PASSWORD: XX
 
 
 ## Usage
