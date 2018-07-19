@@ -19,10 +19,6 @@ Go to your BitBucket project and generate an App Password using the guide:
 
     https://blog.bitbucket.org/2016/06/06/app-passwords-bitbucket-cloud/
 
-Then go to your server environment configuration e.g:
-
-    Elastic Beanstalk > Configuration > Software Configuration
-
 Set the BitBucket variables in the 'Settings' > 'General' section on WordPress, using your BitBucket project, branch, username and app password:
 
     BITBUCKET PROJECT: XX
