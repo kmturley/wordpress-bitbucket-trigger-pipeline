@@ -29,7 +29,9 @@ function publish_static_hook($id) {
         'ref_name' => $bitbucket_branch
       )
     );
-    $response = wp_remote_post('https://api.bitbucket.org/2.0/repositories/'.$bitbucket_project.'/pipelines/', array(
+    // Based on Atlassian documentation
+    // https://developer.atlassian.com/bitbucket/api/2/reference/resource/repositories/%7Bworkspace%7D/%7Brepo_slug%7D/pipelines/
+    $response = wp_remote_post('https://api.bitbucket.org/2.0/repositories/'.$bitbucket_username.'/'.$bitbucket_project.'/pipelines/', array(
       'body' => json_encode($data),
       'headers' => array(
         'Authorization' => 'Basic '.base64_encode($bitbucket_username.':'.$bitbucket_app_password),
@@ -37,7 +39,7 @@ function publish_static_hook($id) {
       ),
     ));
     // for debugging
-    // echo '<pre>https://api.bitbucket.org/2.0/repositories/'.$bitbucket_project.'/pipelines</pre>';
+    // echo '<pre>https://api.bitbucket.org/2.0/repositories/'.$bitbucket_username.'/'.$bitbucket_project.'/pipelines/</pre>';
     // echo '<pre>'.print_r($data, true).'</pre>';
     // echo '<pre>'.print_r($response, true).'</pre>';
   }
